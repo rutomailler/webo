@@ -1,0 +1,25 @@
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const SUPABASE_URL = "https://https://zatalafwwduwzpddtfje.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdGFsYWZ3d2R1d3pwZGR0ZmplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0MTk4MjYsImV4cCI6MjA1Njk5NTgyNn0.bL-BZMgyN1oC84PCowMsVcQ8kyJhsLLVfKr6jmGqKxU";
+  const supabase = createClient(zatalafwwduwzpddtfje.supabase.co, eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdGFsYWZ3d2R1d3pwZGR0ZmplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0MTk4MjYsImV4cCI6MjA1Njk5NTgyNn0.bL-BZMgyN1oC84PCowMsVcQ8kyJhsLLVfKr6jmGqKxU);
+
+  async function logEvent(eventName) {
+    const { error } = await supabase.from('logs').insert([
+      {
+        event: eventName,
+        page_url: window.location.href,
+        user_agent: navigator.userAgent,
+      }
+    ]);
+    if (error) console.error("Logging failed:", error);
+  }
+
+  window.addEventListener("load", () => logEvent("page_view"));
+
+  document.addEventListener("click", (event) => {
+    const targetText = event.target.innerText || "unknown";
+    logEvent(`click: ${targetText}`);
+  });
+</script>
